@@ -1,3 +1,5 @@
+Not sure if this also fixes iwdmismatches, that might be an error.  This primarily fixes scripting errors due to code conflicts, but might also fix mismatches...
+
 The Call of Duty suite of games, and specifically for this repository, Call of Duty 2 (CoD2), features the ability to create custom maps.  The author is administrator of a server where we have 1400+ maps available to place in rotation.  Each of these maps uses multiple files to make the map function.  
 
 This work-around is to handle the gsc files, the "game scripting files," that conflict with each other by renaming the files that conflict and altering the routine calls to the renamed file.
