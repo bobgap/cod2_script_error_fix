@@ -1,5 +1,8 @@
-The Call of Duty suite of games, and specifically for this repository, Call of Duty 2 (CoD2), features the ability to create custom maps.  The author is administrator of a server where we have 1400+ games available to place in rotation.  Each of these maps have multiple files available to make the map function.  This work-around is to handle the gsc files, the "game scripting files."
-Each map has the opportunity to provide a top-level gsc file, in the form "mapname.gsc", where mapname is the name of the map.  This then may call other routines in other files.  The folder that the gsc files reside in is maps/mp/, which is a flat directory, available to all the processes on the server:
+The Call of Duty suite of games, and specifically for this repository, Call of Duty 2 (CoD2), features the ability to create custom maps.  The author is administrator of a server where we have 1400+ maps available to place in rotation.  Each of these maps uses multiple files to make the map function.  
+
+This work-around is to handle the gsc files, the "game scripting files," that conflict with each other by renaming the files that conflict and altering the routine calls to the renamed file.
+
+Each map has the opportunity (not required) to provide a top-level gsc file, in the form "mapname.gsc", where mapname is the name of the map.  This top-level gsc may call routines in other files.  GSC file reside in maps/mp/, which is a flat directory, available to all the processes on the server:
 ***Sample of gsc files in the stock game:
 maps/mp/_utility.gsc
 maps/mp/mp_matmata_fx.gsc
@@ -12,12 +15,13 @@ maps/mp/gametypes/_hud_teamscore.gsc
 maps/mp/mp_downtown.gsc
 maps/mp/mp_burgundy.gsc
 maps/mp/mp_trainstation.gsc
+When a map is started, it loads the files in its iwd into the gamke directory.
 
-GSC files with the same name may conflict, the file first loaded is the one that is used.  One can see what this order is by viewing the game logs.
+GSC files with the same name may conflict in the client's suite of downloaded custom maps, the file first loaded is the one that is used.  One can see what this order is by viewing the game logs.
 
-When running a mod, the mod folder, called fs_game, is added to this file structure and is loaded quite high in the order, so it may be used to gain precedence over the other files in the game.  Taking advantage of this, an maps/mp directory may be added to the fs_game folder containing the gsc files we need to modify.  The fs_game directory for our server is o3a:
+When running a mod, the mod folder, called fs_game, is added to this file structure and is loaded quite high in the order, so it may be used to gain precedence over the other files in the game.  Taking advantage of this, a maps/mp directory may be added to the fs_game folder, containing the gsc files we need to modify.  The fs_game directory for our server is o3a:
 /home/server/o3a/
-and the maps/mp folder is:
+and its maps/mp folder is:
 /home/server/o3a/maps/mp
 
 When a client joins the server, it checks the files by calculating a checksum of the files that exist in your local iwd files.
@@ -31,3 +35,5 @@ So what I did, after much contemplationg, is to
 5. Merge the generated files with those that may already exist in the fs_game/maps/mp directory, retaining other modifications that might have already been done.
 
 Since I have done this, client IWD sum/mismatch errors have been greatly reducecd or eliminated, as far as I can tell.
+
+I undoubtedly have some misunderstandings about how this works, but what I have done seems to have solved a problem.  All the maps with exploding barrels once again have exploding barrels and IWD sum/mismatch errors are reduced.
