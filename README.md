@@ -32,10 +32,10 @@ One of the more prevalent files that cause IWD sum/mismatch errors is barrels.gs
 So what I did, after much contemplationg, is to
 1. Search for all gsc files in our custom maps (unzipped all the custom maps into unzippedcustomiwds, each containing a directory for the map, and the maps/mp below (among others) *** unzippedcustomiwds/mp_d_day/maps/mp
 2. Look through each of the gsc files for routine calls, eliminating stock calls, then recursively search for calls within the called files.
-3. Take the results of this and create files with unique names for those that conflict with others (adding "x" and a 6 bit segment of the md5sum of each file.) Sample:  barrelsx11d0f4.gsc barrelsx219115.gsc barrelsx23f121.gsc barrelsx32ef92.gsc
-4. Modify the calling file so that the routine being called has its location file renamed to match those in step 3.
-5. Merge the generated files with those that may already exist in the fs_game/maps/mp directory, retaining other modifications that might have already been done.
+3. Take the results of this, group files with the same name by md5sum, then create files with unique names for those who have the same name as others but different md5sums.  Renaming files that conflict with others (adding an "x" and a 6 bit segment of the md5sum of each file.) Sample:  barrelsx11d0f4.gsc barrelsx219115.gsc barrelsx23f121.gsc barrelsx32ef92.gsc (32 versions actually done on my server).
+4. Modify the calling file so that the routine being called has its containing file renamed to match those in step 3.
+5. Merge by hand, the generated files with those that may already exist in the fs_game/maps/mp directory, retaining other modifications that might have already been done.  This could be done through programming, but it wasn't worth the effort.
 
-Since I have done this, client IWD sum/mismatch errors have been greatly reducecd or eliminated, as far as I can tell.
+Since I have done this, client script errors and IWD sum/mismatch errors have been reducecd or eliminated, as far as I can tell.
 
 I undoubtedly have some misunderstandings about how this works, but what I have done seems to have solved a problem.  All the maps with exploding barrels once again have exploding barrels and IWD sum/mismatch errors are reduced.
