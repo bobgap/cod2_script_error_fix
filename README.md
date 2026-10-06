@@ -34,6 +34,6 @@ So what I did, after much contemplationg, is to
 4. Modify the calling file so that the routine being called has its containing file renamed to match those in step 3.
 5. Merge these files, manually, with those that may already exist in the fs_game/maps/mp directory that were changed for other reasons.
 
-Since I have done this, client script errors have been virtually eliminated, and IWD sum/mismatch errors seem to be reducecd.
+Since I have done this, client script errors have been virtually eliminated, and IWD sum/mismatch errors seem to be reduced.
 
 I undoubtedly have some misunderstandings about how this works, but what I have done seems to have solved a problem.  All the maps with exploding barrels once again have exploding barrels and IWD sum/mismatch errors are reduced.
