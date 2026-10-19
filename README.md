@@ -6,7 +6,9 @@ This work-around is to handle the gsc files, the "game scripting files," that co
 
 Each map has the opportunity (not required) to provide a top-level gsc file, in the form "mapname.gsc", where mapname is the name of the map.  This top-level gsc may call routines in other files.  GSC files reside in maps/mp/, which is a flat directory, available to all the processes on the server:
 ***Sample of gsc files in the stock game:
-maps/mp/_utility.gsc
+maps/mp/mp_downtown.gsc
+
+maps/mp/mp_burgundy.gsc
 
 maps/mp/mp_matmata_fx.gsc
 
@@ -14,13 +16,7 @@ maps/mp/mp_dawnville.gsc
 
 Note that there are a couple subfolders, one being _gametypes, but these do not have the issue of conflicting files, since they are not map-specific, though there can be some mod-specific files contained therein, but again, there are no files with the same name, since this is not a map-specific place for loading files (at least any normal map files).
 
-maps/mp/gametypes/_hud_teamscore.gsc
-...
-maps/mp/mp_downtown.gsc
-maps/mp/mp_burgundy.gsc
-maps/mp/mp_trainstation.gsc
-When a map is started, it loads the files in its iwd into the game directory.
-
+When a map is started, it searches for files in its iwd into the game directory and can grab them from within other iwds in its game directory.  The order and paths of files can be found in the game log.
 GSC files with the same name may conflict in the client's suite of downloaded custom maps, the file first loaded is the one that is used.  One can see what this order is by viewing the game logs.
 
 When running a mod, the mod folder, called fs_game, is added to this file structure and is loaded quite high in the order, so it may be used to gain precedence over the other files in the game.  Taking advantage of this, a maps/mp directory may be added to the fs_game folder, containing the gsc files needed to be modified to change map functionality, such as adding/removing spawnpoints, adding killzones, etc..  The fs_game directory for our server is o3a:
