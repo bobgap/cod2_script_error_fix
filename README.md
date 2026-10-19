@@ -7,8 +7,13 @@ This work-around is to handle the gsc files, the "game scripting files," that co
 Each map has the opportunity (not required) to provide a top-level gsc file, in the form "mapname.gsc", where mapname is the name of the map.  This top-level gsc may call routines in other files.  GSC files reside in maps/mp/, which is a flat directory, available to all the processes on the server:
 ***Sample of gsc files in the stock game:
 maps/mp/_utility.gsc
+
 maps/mp/mp_matmata_fx.gsc
+
 maps/mp/mp_dawnville.gsc
+
+Note that there are a couple subfolders, one being _gametypes, but these do not have the issue of conflicting files, since they are not map-specific, though there can be some mod-specific files contained therein, but again, there are no files with the same name, since this is not a map-specific place for loading files (at least any normal map files).
+
 maps/mp/gametypes/_hud_teamscore.gsc
 ...
 maps/mp/mp_downtown.gsc
